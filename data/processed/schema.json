@@ -1,0 +1,204 @@
+{
+    "columns": [
+        {
+            "name": "encounter_id",
+            "dtype": "int64"
+        },
+        {
+            "name": "patient_nbr",
+            "dtype": "int64"
+        },
+        {
+            "name": "race",
+            "dtype": "object"
+        },
+        {
+            "name": "gender",
+            "dtype": "object"
+        },
+        {
+            "name": "age",
+            "dtype": "object"
+        },
+        {
+            "name": "weight",
+            "dtype": "object"
+        },
+        {
+            "name": "admission_type_id",
+            "dtype": "int64"
+        },
+        {
+            "name": "discharge_disposition_id",
+            "dtype": "int64"
+        },
+        {
+            "name": "admission_source_id",
+            "dtype": "int64"
+        },
+        {
+            "name": "time_in_hospital",
+            "dtype": "int64"
+        },
+        {
+            "name": "payer_code",
+            "dtype": "object"
+        },
+        {
+            "name": "medical_specialty",
+            "dtype": "object"
+        },
+        {
+            "name": "num_lab_procedures",
+            "dtype": "int64"
+        },
+        {
+            "name": "num_procedures",
+            "dtype": "int64"
+        },
+        {
+            "name": "num_medications",
+            "dtype": "int64"
+        },
+        {
+            "name": "number_outpatient",
+            "dtype": "int64"
+        },
+        {
+            "name": "number_emergency",
+            "dtype": "int64"
+        },
+        {
+            "name": "number_inpatient",
+            "dtype": "int64"
+        },
+        {
+            "name": "diag_1",
+            "dtype": "object"
+        },
+        {
+            "name": "diag_2",
+            "dtype": "object"
+        },
+        {
+            "name": "diag_3",
+            "dtype": "object"
+        },
+        {
+            "name": "number_diagnoses",
+            "dtype": "int64"
+        },
+        {
+            "name": "max_glu_serum",
+            "dtype": "object"
+        },
+        {
+            "name": "A1Cresult",
+            "dtype": "object"
+        },
+        {
+            "name": "metformin",
+            "dtype": "object"
+        },
+        {
+            "name": "repaglinide",
+            "dtype": "object"
+        },
+        {
+            "name": "nateglinide",
+            "dtype": "object"
+        },
+        {
+            "name": "chlorpropamide",
+            "dtype": "object"
+        },
+        {
+            "name": "glimepiride",
+            "dtype": "object"
+        },
+        {
+            "name": "acetohexamide",
+            "dtype": "object"
+        },
+        {
+            "name": "glipizide",
+            "dtype": "object"
+        },
+        {
+            "name": "glyburide",
+            "dtype": "object"
+        },
+        {
+            "name": "tolbutamide",
+            "dtype": "object"
+        },
+        {
+            "name": "pioglitazone",
+            "dtype": "object"
+        },
+        {
+            "name": "rosiglitazone",
+            "dtype": "object"
+        },
+        {
+            "name": "acarbose",
+            "dtype": "object"
+        },
+        {
+            "name": "miglitol",
+            "dtype": "object"
+        },
+        {
+            "name": "troglitazone",
+            "dtype": "object"
+        },
+        {
+            "name": "tolazamide",
+            "dtype": "object"
+        },
+        {
+            "name": "examide",
+            "dtype": "object"
+        },
+        {
+            "name": "citoglipton",
+            "dtype": "object"
+        },
+        {
+            "name": "insulin",
+            "dtype": "object"
+        },
+        {
+            "name": "glyburide-metformin",
+            "dtype": "object"
+        },
+        {
+            "name": "glipizide-metformin",
+            "dtype": "object"
+        },
+        {
+            "name": "glimepiride-pioglitazone",
+            "dtype": "object"
+        },
+        {
+            "name": "metformin-rosiglitazone",
+            "dtype": "object"
+        },
+        {
+            "name": "metformin-pioglitazone",
+            "dtype": "object"
+        },
+        {
+            "name": "change",
+            "dtype": "object"
+        },
+        {
+            "name": "diabetesMed",
+            "dtype": "object"
+        },
+        {
+            "name": "readmitted",
+            "dtype": "object"
+        }
+    ]
+}
