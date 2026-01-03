@@ -21,8 +21,8 @@
 import pandas as pd
 from pathlib import Path
 import joblib
-from diabetes_readmission_project.src.data_processing.clean_data import clean
-from diabetes_readmission_project.src.data_processing.schema import save_schema
+from .clean_data import clean
+from .schema import save_schema
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 RAW_PATH = PROJECT_ROOT / "data/raw/diabetic_data.csv"
@@ -72,8 +72,9 @@ def preprocess():
     for c in categorical_cols:
         missing_count = df[c].isna().sum()
         if missing_count > 0:
-            print(f"Заполнение пропусков в {c}: {missing_count}")
-            df[c] = df[c].fillna("Unknown")
+            mode_val = df[c].mode().iloc[0] if not df[c].mode().empty else "Unknown"
+            print(f"Заполнение пропусков в {c}: {missing_count} (самым частым значением: '{mode_val}')")
+            df[c] = df[c].fillna(mode_val)
 
     # числовые пропуски
     numerical_cols = df.select_dtypes(exclude="object").columns.tolist()
@@ -81,8 +82,8 @@ def preprocess():
     for c in numerical_cols:
         missing_count = df[c].isna().sum()
         if missing_count > 0:
-            print(f"Заполнение пропусков в {c}: {missing_count}")
-            df[c] = df[c].fillna(0)
+            print(f"Заполнение пропусков в {c}: {missing_count} (медианой)")
+            df[c] = df[c].fillna(df[c].median())
 
     print("\n=== Итоговый размер датасета ===")
     print(df.shape)

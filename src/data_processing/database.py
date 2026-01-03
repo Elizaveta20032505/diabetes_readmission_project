@@ -55,20 +55,46 @@ def init_db():
             df = pd.read_csv(TOP10_CSV_PATH)
             
             # Преобразуем DataFrame в список объектов
+            # Финальная проверка пропусков перед загрузкой в БД
+            missing_total = df.isna().sum().sum()
+            if missing_total > 0:
+                print(f"⚠️ Обнаружено {missing_total} пропусков в данных перед загрузкой в БД!")
+                print("Заполняем пропуски...")
+
+                # Числовые признаки - медианой
+                numerical_cols = ['number_inpatient', 'number_diagnoses', 'number_emergency', 'number_outpatient', 'time_in_hospital']
+                for col in numerical_cols:
+                    if col in df.columns:
+                        missing_count = df[col].isna().sum()
+                        if missing_count > 0:
+                            median_val = df[col].median()
+                            df[col] = df[col].fillna(median_val)
+                            print(f"  ✅ {col}: заполнено {missing_count} пропусков медианой {median_val}")
+
+                # Категориальные признаки - самым частым значением
+                categorical_cols = ['diag_1', 'diag_2', 'diag_3', 'medical_specialty', 'diabetesMed']
+                for col in categorical_cols:
+                    if col in df.columns:
+                        missing_count = df[col].isna().sum()
+                        if missing_count > 0:
+                            mode_val = df[col].mode().iloc[0] if not df[col].mode().empty else "Unknown"
+                            df[col] = df[col].fillna(mode_val)
+                            print(f"  ✅ {col}: заполнено {missing_count} пропусков значением '{mode_val}'")
+
             records = []
             for _, row in df.iterrows():
                 record = PatientTop10(
-                    number_inpatient=int(row['number_inpatient']) if pd.notna(row['number_inpatient']) else 0,
-                    number_diagnoses=int(row['number_diagnoses']) if pd.notna(row['number_diagnoses']) else 0,
-                    number_emergency=int(row['number_emergency']) if pd.notna(row['number_emergency']) else 0,
-                    number_outpatient=int(row['number_outpatient']) if pd.notna(row['number_outpatient']) else 0,
-                    time_in_hospital=int(row['time_in_hospital']) if pd.notna(row['time_in_hospital']) else 0,
-                    diag_1=str(row['diag_1']) if pd.notna(row['diag_1']) else 'Unknown',
-                    diag_2=str(row['diag_2']) if pd.notna(row['diag_2']) else 'Unknown',
-                    diag_3=str(row['diag_3']) if pd.notna(row['diag_3']) else 'Unknown',
-                    medical_specialty=str(row['medical_specialty']) if pd.notna(row['medical_specialty']) else 'Unknown',
-                    diabetesMed=str(row['diabetesMed']) if pd.notna(row['diabetesMed']) else 'Unknown',
-                    readmitted=str(row['readmitted']) if pd.notna(row['readmitted']) else 'NO'
+                    number_inpatient=int(row['number_inpatient']),
+                    number_diagnoses=int(row['number_diagnoses']),
+                    number_emergency=int(row['number_emergency']),
+                    number_outpatient=int(row['number_outpatient']),
+                    time_in_hospital=int(row['time_in_hospital']),
+                    diag_1=str(row['diag_1']),
+                    diag_2=str(row['diag_2']),
+                    diag_3=str(row['diag_3']),
+                    medical_specialty=str(row['medical_specialty']),
+                    diabetesMed=str(row['diabetesMed']),
+                    readmitted=str(row['readmitted'])
                 )
                 records.append(record)
             

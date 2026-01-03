@@ -19,6 +19,27 @@ def main():
     df = pd.read_csv(PROCESSED_PATH)
     df_top10 = df[TOP_FEATURES].copy()
 
+    # ДОПОЛНИТЕЛЬНАЯ ОБРАБОТКА ПРОПУСКОВ В ТОП-10 ФАЙЛЕ
+    print("Дополнительная обработка пропусков в топ-10 признаках...")
+
+    # Числовые признаки - медианой (если остались пропуски)
+    for col in NUMERICAL_TOP:
+        if col in df_top10.columns:
+            missing_count = df_top10[col].isna().sum()
+            if missing_count > 0:
+                median_val = df_top10[col].median()
+                df_top10[col] = df_top10[col].fillna(median_val)
+                print(f"✅ {col}: дополнительно заполнено {missing_count} пропусков медианой {median_val}")
+
+    # Категориальные признаки - самым частым значением (если остались пропуски)
+    for col in CATEGORICAL_TOP:
+        if col in df_top10.columns:
+            missing_count = df_top10[col].isna().sum()
+            if missing_count > 0:
+                mode_val = df_top10[col].mode().iloc[0] if not df_top10[col].mode().empty else "Unknown"
+                df_top10[col] = df_top10[col].fillna(mode_val)
+                print(f"✅ {col}: дополнительно заполнено {missing_count} пропусков значением '{mode_val}'")
+
     # Сохраняем таблицу с топ-10 признаками без кодирования
     TOP10_PATH.parent.mkdir(parents=True, exist_ok=True)
     df_top10.to_csv(TOP10_PATH, index=False)
