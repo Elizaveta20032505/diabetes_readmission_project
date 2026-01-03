@@ -9,7 +9,7 @@ TOP10_ENCODED_PATH = PROJECT_ROOT / "data/processed/diabetic_data_top10_encoded.
 
 # Топ 10 признаков на основании корреляций, которые мы уже посчитали
 NUMERICAL_TOP = ["number_inpatient", "number_diagnoses", "number_emergency",
-                 "number_outpatient", "patient_nbr"]
+                 "number_outpatient", "time_in_hospital"]
 CATEGORICAL_TOP = ["diag_1", "diag_3", "diag_2", "medical_specialty", "diabetesMed"]
 
 TOP_FEATURES = NUMERICAL_TOP + CATEGORICAL_TOP + ["readmitted"]  # оставляем target
