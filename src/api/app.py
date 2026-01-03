@@ -1,3 +1,24 @@
+"""
+Модуль: src/api/app.py
+
+Назначение:
+    Главный файл FastAPI приложения. Инициализирует приложение, настраивает CORS,
+    подключает роуты и обрабатывает ошибки.
+
+Входные данные:
+    - HTTP запросы к различным эндпоинтам API
+
+Выходные данные:
+    - JSON ответы от роутов
+    - Документация API доступна по /docs (Swagger)
+
+Использование:
+    - Запускается через: uvicorn src.api.app:app --reload
+    - Подключает роуты из src/api/routes/ (dashboard, predict, upload_data)
+    - Настраивает CORS для работы с фронтендом
+    - Обрабатывает глобальные ошибки
+    - Используется фронтендом (frontend/app.py) для всех API запросов
+"""
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware

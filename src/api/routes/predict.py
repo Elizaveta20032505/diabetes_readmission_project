@@ -1,3 +1,27 @@
+"""
+Модуль: src/api/routes/predict.py
+
+Назначение:
+    Роуты FastAPI для выполнения предсказаний повторных госпитализаций.
+
+Входные данные (через HTTP POST запрос):
+    - JSON с полем "data", содержащим словарь с признаками пациента
+    - Обязательные признаки: все из TOP10_FEATURES (number_inpatient, number_diagnoses, etc.)
+
+Выходные данные (JSON ответ):
+    - status: статус выполнения
+    - prediction: предсказание модели (строка)
+    - prediction_category: человекочитаемое описание предсказания
+    - risk_level: уровень риска (Низкий/Средний/Высокий)
+    - probability: вероятность предсказания
+    - message: текстовое сообщение с результатом
+
+Использование:
+    - Подключается в src/api/app.py через app.include_router()
+    - Используется фронтендом (frontend/app.py) в разделе "Предсказание"
+    - Вызывает src/modeling/predict.py для выполнения предсказания
+    - Нормализует и интерпретирует результат модели для пользователя
+"""
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 from typing import Dict, Any

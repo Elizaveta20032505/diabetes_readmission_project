@@ -1,3 +1,24 @@
+"""
+Модуль: src/data_processing/database.py
+
+Назначение:
+    Настройка подключения к базе данных SQLite и инициализация БД.
+
+Входные данные:
+    - init_db(): автоматически вызывается при первом использовании
+    - CSV файл data/processed/diabetic_data_top10.csv для начальной загрузки
+
+Выходные данные:
+    - engine: SQLAlchemy engine для подключения к БД
+    - SessionLocal: фабрика сессий для работы с БД
+    - Base: базовый класс для моделей SQLAlchemy
+    - init_db(): создает таблицы и загружает начальные данные если БД пустая
+
+Использование:
+    - Используется во всех модулях для работы с БД (models.py, load_data.py, upload_data.py)
+    - БД автоматически инициализируется при первом использовании
+    - Если БД пустая, загружает данные из CSV файла
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from pathlib import Path

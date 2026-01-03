@@ -52,13 +52,14 @@ diabetes_readmission_project/
 │   │   ├── load_data.py          # Загрузка данных
 │   │   ├── models.py             # Модели SQLAlchemy
 │   │   ├── preprocess.py         # Предобработка
+│   │   ├── advanced_preprocessing.py  # Расширенная предобработка с визуализацией
 │   │   ├── schema.py             # Схема данных
 │   │   ├── select_top_features.py
 │   │   └── validate_user_data.py
 │   ├── modeling/                 # Модели машинного обучения
 │   │   ├── train_model.py        # Обучение моделей
 │   │   ├── predict.py            # Предсказания
-│   │   └── evaluate_model.py     # Оценка моделей
+│   │   └── train_model.py        # Обучение и оценка моделей
 │   ├── analysis/                 # Анализ данных
 │   │   ├── data_analysis.py
 │   │   ├── feature_correlation.py
@@ -302,14 +303,14 @@ curl -X POST "http://localhost:8000/data/upload" \
 - `models.py` - модели SQLAlchemy для работы с БД
 - `load_data.py` - функции загрузки данных из БД и CSV
 - `preprocess.py` - предобработка исходных данных
+- `advanced_preprocessing.py` - расширенная предобработка с анализом выбросов, стандартизацией, нормализацией и визуализацией
 - `select_top_features.py` - выбор топ-10 признаков
 - `clean_data.py` - очистка данных
 - `schema.py` - работа со схемой данных
 
 ### Моделирование (`src/modeling/`)
-- `train_model.py` - обучение моделей
+- `train_model.py` - обучение и оценка качества моделей
 - `predict.py` - функции предсказания
-- `evaluate_model.py` - оценка качества моделей
 
 ### Анализ (`src/analysis/`)
 - `data_analysis.py` - анализ данных

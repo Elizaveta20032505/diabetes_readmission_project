@@ -1,3 +1,23 @@
+"""
+Модуль: src/data_processing/preprocess.py
+
+Назначение:
+    Основной скрипт предобработки исходных данных: очистка, заполнение пропусков, сохранение.
+
+Входные данные:
+    - CSV файл data/raw/diabetic_data.csv с исходными данными
+
+Выходные данные:
+    - CSV файл data/processed/diabetic_data_processed.csv с очищенными данными
+    - JSON файл data/processed/schema.json со схемой данных
+
+Использование:
+    - Запускается вручную: python -m src.data_processing.preprocess
+    - Является первым этапом обработки данных перед выбором признаков
+    - Использует src/data_processing/clean_data.py для очистки
+    - Использует src/data_processing/schema.py для сохранения схемы
+    - Результат используется в src/data_processing/select_top_features.py
+"""
 import pandas as pd
 from pathlib import Path
 import joblib

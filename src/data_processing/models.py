@@ -1,3 +1,21 @@
+"""
+Модуль: src/data_processing/models.py
+
+Назначение:
+    Определяет модель SQLAlchemy для таблицы БД с топ-10 признаками и целевым признаком.
+
+Входные данные:
+    - Используется при создании записей в БД через SQLAlchemy ORM
+
+Выходные данные:
+    - Класс PatientTop10 для работы с таблицей patients_top10 в БД
+
+Использование:
+    - Используется в src/data_processing/database.py для создания таблицы
+    - Используется в src/api/routes/upload_data.py для добавления данных
+    - Используется в src/data_processing/load_data.py для загрузки данных из БД
+    - Таблица содержит 10 признаков + целевой признак readmitted
+"""
 from sqlalchemy import Column, Integer, Float, String
 from .database import Base
 

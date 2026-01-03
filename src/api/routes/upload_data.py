@@ -1,3 +1,27 @@
+"""
+Модуль: src/api/routes/upload_data.py
+
+Назначение:
+    Роуты FastAPI для загрузки и валидации данных пациентов в базу данных.
+
+Входные данные (через HTTP POST запрос):
+    - CSV файл с данными пациентов
+    - Файл должен содержать все обязательные столбцы из REQUIRED_COLUMNS
+    - Все значения должны быть заполнены (без пропусков)
+
+Выходные данные (JSON ответ):
+    - status: статус загрузки
+    - message: сообщение о результате
+    - rows_added: количество добавленных записей
+    - total_rows_in_db: общее количество записей в БД после загрузки
+
+Использование:
+    - Подключается в src/api/app.py через app.include_router()
+    - Используется фронтендом (frontend/app.py) в разделе "Загрузка данных"
+    - Валидирует данные через validate_data()
+    - Добавляет данные в БД через модель PatientTop10 из src/data_processing/models.py
+    - Данные добавляются к существующим (не перезаписывают БД)
+"""
 import pandas as pd
 from fastapi import APIRouter, UploadFile, HTTPException
 from pathlib import Path

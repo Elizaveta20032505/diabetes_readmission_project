@@ -1,3 +1,23 @@
+"""
+Модуль: src/data_processing/load_data.py
+
+Назначение:
+    Функции для загрузки данных из базы данных или CSV файлов.
+
+Входные данные:
+    - load_top10_from_db(): без параметров, загружает из БД
+    - load_processed(): без параметров, загружает из CSV (для обратной совместимости)
+
+Выходные данные:
+    - DataFrame с данными пациентов (топ-10 признаков + readmitted)
+    - Если БД пустая, возвращает данные из CSV файла
+
+Использование:
+    - Используется в src/api/routes/dashboard.py для получения данных для графиков
+    - Используется в src/api/routes/upload_data.py для проверки данных
+    - Автоматически инициализирует БД через init_db() если нужно
+    - Преобразует записи из БД в DataFrame для удобной работы
+"""
 import pandas as pd
 from pathlib import Path
 from .database import SessionLocal, init_db
